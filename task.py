@@ -10,7 +10,7 @@ class TaskManagement:
         self.completed = completed
         self.completedTime = completedTime
         
-    def updatedTask(self, newTask):
+    def updateTask(self, newTask):
         self.task = newTask
         self.updatedTime = datetime.datetime.now()
         
@@ -46,16 +46,19 @@ class Task():
      
     def update_task(self, task_index, new_task_name):
         try:
-            task = self.tasks[task_index]
-            task.update_task(new_task_name)
+            for i, task in enumerate(self.tasks):
+                task = self.tasks[task_index-1]
+                task.updateTask(new_task_name)
             print(f"Task '{task.task}' updated successfully")
         except IndexError:
             print(f"Invalid task index: {task_index}")
        
     def task_complete(self, task_index):
         try:
-            task = self.tasks[task_index]
-            task.complete_task()
+            for i, task in enumerate(self.tasks):
+
+                task = self.tasks[task_index-1]
+                task.completeTask()
             print(f"Task '{task.task}' marked as completed")
         except IndexError:
             print(f"Invalid task index: {task_index}")
